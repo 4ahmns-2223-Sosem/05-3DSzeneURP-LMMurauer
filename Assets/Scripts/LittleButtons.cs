@@ -4,14 +4,27 @@ using UnityEngine;
 
 public class LittleButtons : MonoBehaviour
 {
-    public GameObject infoGrafik;
-    public 
+    public GameObject infografik;
+
+    public AudioClip infoAudioClip;
+    private AudioSource infoAudioS;
 
     void Start()
     {
-        
+        infoAudioS = gameObject.AddComponent<AudioSource>();
+        infoAudioS.clip = infoAudioClip;
+        infoAudioS.loop = false;
+        infoAudioS.playOnAwake = false;
     }
 
+    private void OnMouseDown()
+    {
+        infoAudioS.Play();
+        while (infoAudioS)
+        {
+            infografik.SetActive(true);
+        }
+    }
     
     void Update()
     {

@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.Audio;
 
 
 public class ButtonClick : MonoBehaviour
@@ -10,8 +9,6 @@ public class ButtonClick : MonoBehaviour
     public AudioClip clickSound;
     private AudioSource clickSource;
 
-    public AudioClip voiceSound;
-    private AudioSource voiceSource;
 
     public void Update()
     {
@@ -21,19 +18,18 @@ public class ButtonClick : MonoBehaviour
 
     public void Start()
     {
-        clickSource = GetComponent<AudioSource>();
+        Debug.Log("Wird gestartet");
+        clickSource = gameObject.AddComponent<AudioSource>();
         clickSource.clip = clickSound;
-
-        //voiceSource = gameObject.AddComponent<AudioSource>();
-        //voiceSource.clip = voiceSound;
+        clickSource.loop = false;
+        clickSource.playOnAwake = false;
     }
 
     private void OnMouseDown()
     {
-        if (clickSound)
-        {
-            clickSource.Play();
-        }
+        Debug.Log("SpieleSound");
+        clickSource.Play();
+
     }
 
 }
